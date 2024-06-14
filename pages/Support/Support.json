@@ -1,34 +1,57 @@
 {
-  "gitSyncId": "655b663c44c3196dff1b331d_656f0514a6e25d536f06db47",
   "unpublishedPage": {
+    "name": "Support",
+    "slug": "support",
     "layouts": [
       {
+        "viewMode": false,
         "dsl": {
           "backgroundColor": "none",
-          "bottomRow": 1185.999999999971,
-          "canExtend": true,
-          "containerStyle": "none",
-          "detachFromLayout": true,
-          "dynamicBindingPathList": [],
-          "dynamicTriggerPathList": [],
-          "leftColumn": 0,
-          "minHeight": 1292,
-          "parentColumnSpace": 1,
-          "parentRowSpace": 1,
-          "positioning": "fixed",
           "rightColumn": 4896,
+          "widgetName": "MainContainer",
           "snapColumns": 64,
-          "snapRows": 124,
-          "topRow": 0,
-          "type": "CANVAS_WIDGET",
-          "useAutoLayout": false,
-          "version": 89,
+          "detachFromLayout": true,
           "widgetId": "0",
-          "widgetName": "MainContainer"
-        }
+          "bottomRow": 1185.999999999971,
+          "containerStyle": "none",
+          "topRow": 0,
+          "snapRows": 124,
+          "parentRowSpace": 1,
+          "canExtend": true,
+          "type": "CANVAS_WIDGET",
+          "version": 89,
+          "minHeight": 1292,
+          "useAutoLayout": false,
+          "dynamicTriggerPathList": [],
+          "parentColumnSpace": 1,
+          "dynamicBindingPathList": [],
+          "leftColumn": 0,
+          "positioning": "fixed"
+        },
+        "layoutOnLoadActions": [
+          [
+            {
+              "id": "Support_Actions.onPageLoad",
+              "name": "Actions.onPageLoad",
+              "collectionId": "Support_Actions",
+              "confirmBeforeExecute": false,
+              "pluginType": "JS",
+              "jsonPathKeys": [],
+              "timeoutInMillisecond": 10000
+            }
+          ]
+        ],
+        "layoutOnLoadActionErrors": [],
+        "validOnPageLoadActions": true,
+        "id": "Support",
+        "deleted": false,
+        "policies": [],
+        "userPermissions": []
       }
     ],
-    "name": "Support",
-    "slug": "support"
-  }
+    "userPermissions": [],
+    "policies": []
+  },
+  "deleted": false,
+  "gitSyncId": "655b663c44c3196dff1b331d_656f0514a6e25d536f06db47"
 }

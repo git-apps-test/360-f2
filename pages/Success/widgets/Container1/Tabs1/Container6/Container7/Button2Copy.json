@@ -1,55 +1,45 @@
 {
-  "animateLoading": true,
-  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 41,
-  "boxShadow": "none",
-  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
-  "buttonVariant": "PRIMARY",
-  "disabledWhenInvalid": false,
-  "displayName": "Button",
-  "dynamicBindingPathList": [
-    {
-      "key": "buttonColor"
-    },
-    {
-      "key": "borderRadius"
-    }
-  ],
-  "dynamicTriggerPathList": [
-    {
-      "key": "onClick"
-    }
-  ],
-  "hideCard": false,
-  "iconSVG": "/static/media/icon.05d209fafeb13a8569e3b4e97069d9ee.svg",
-  "isDefaultClickDisabled": true,
-  "isDeprecated": false,
-  "isDisabled": false,
-  "isLoading": false,
-  "isVisible": true,
-  "key": "r2rngc4sxe",
-  "leftColumn": 0,
-  "minWidth": 120,
-  "onClick": "{{showModal('Modal22Copy');}}",
-  "parentColumnSpace": 4.500001430511475,
-  "parentId": "hiovdwlj78",
-  "parentRowSpace": 10,
-  "placement": "CENTER",
-  "recaptchaType": "V3",
-  "renderMode": "CANVAS",
-  "resetFormOnClick": false,
-  "rightColumn": 32,
-  "searchTags": [
-    "click",
-    "submit"
-  ],
-  "tags": [
-    "Buttons"
-  ],
-  "text": "View breakdown by App Viewer",
-  "topRow": 36,
-  "type": "BUTTON_WIDGET",
-  "version": 1,
-  "widgetId": "s8w78n9g2z",
-  "widgetName": "Button2Copy"
+    "resetFormOnClick": false,
+    "boxShadow": "none",
+    "onClick": "{{showModal('Modal22Copy');}}",
+    "widgetName": "Button2Copy",
+    "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+    "displayName": "Button",
+    "iconSVG": "/static/media/icon.05d209fafeb13a8569e3b4e97069d9ee.svg",
+    "bottomRow": 41,
+    "searchTags": [
+        "click",
+        "submit"
+    ],
+    "topRow": 36,
+    "parentRowSpace": 10,
+    "type": "BUTTON_WIDGET",
+    "hideCard": false,
+    "animateLoading": true,
+    "dynamicTriggerPathList": [{"key": "onClick"}],
+    "parentColumnSpace": 4.500001430511475,
+    "dynamicBindingPathList": [
+        {"key": "buttonColor"},
+        {"key": "borderRadius"}
+    ],
+    "leftColumn": 0,
+    "isDisabled": false,
+    "text": "View breakdown by App Viewer",
+    "key": "r2rngc4sxe",
+    "isDeprecated": false,
+    "rightColumn": 32,
+    "isDefaultClickDisabled": true,
+    "widgetId": "s8w78n9g2z",
+    "minWidth": 120,
+    "isVisible": true,
+    "recaptchaType": "V3",
+    "version": 1,
+    "parentId": "hiovdwlj78",
+    "tags": ["Buttons"],
+    "isLoading": false,
+    "renderMode": "CANVAS",
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "disabledWhenInvalid": false,
+    "buttonVariant": "PRIMARY",
+    "placement": "CENTER"
 }

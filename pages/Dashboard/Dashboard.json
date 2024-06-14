@@ -1,31 +1,148 @@
 {
-  "gitSyncId": "655b663c44c3196dff1b331d_65fabd6e5e12647ece51d868",
   "unpublishedPage": {
+    "name": "Dashboard",
+    "slug": "dashboard",
     "layouts": [
       {
+        "viewMode": false,
         "dsl": {
           "backgroundColor": "none",
-          "bottomRow": 710,
-          "canExtend": true,
-          "containerStyle": "none",
-          "detachFromLayout": true,
-          "dynamicBindingPathList": [],
-          "leftColumn": 0,
-          "minHeight": 610,
-          "parentColumnSpace": 1,
-          "parentRowSpace": 1,
           "rightColumn": 1224,
+          "widgetName": "MainContainer",
           "snapColumns": 64,
-          "snapRows": 59,
+          "detachFromLayout": true,
+          "widgetId": "0",
+          "bottomRow": 710,
+          "containerStyle": "none",
           "topRow": 0,
+          "snapRows": 59,
+          "parentRowSpace": 1,
+          "canExtend": true,
           "type": "CANVAS_WIDGET",
           "version": 89,
-          "widgetId": "0",
-          "widgetName": "MainContainer"
-        }
+          "minHeight": 610,
+          "parentColumnSpace": 1,
+          "dynamicBindingPathList": [],
+          "leftColumn": 0
+        },
+        "layoutOnLoadActions": [
+          [
+            {
+              "id": "Dashboard_getSegmentSFAccounts",
+              "name": "getSegmentSFAccounts",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format(\"M\")",
+                "SegmentConstants.AccountQueryFields.join(\", \")",
+                "moment().format(\"YYYY\")"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Dashboard_getSegmentSFCases",
+              "name": "getSegmentSFCases",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "SegmentConstants.CaseQueryFields.join(\", \")"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Dashboard_getSegmentSFOpportunities",
+              "name": "getSegmentSFOpportunities",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format(\"M\")",
+                "SegmentConstants.OpportunityQueryFields.join(\", \")",
+                "moment().format(\"YYYY\")"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Dashboard_getCustomerOverages",
+              "name": "getCustomerOverages",
+              "confirmBeforeExecute": false,
+              "pluginType": "SAAS",
+              "jsonPathKeys": [],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Dashboard_getAllUsage",
+              "name": "getAllUsage",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "From_Date.formattedDate",
+                "To_Date.formattedDate"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Dashboard_getSegmentSFUsers",
+              "name": "getSegmentSFUsers",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "SegmentConstants.UserQueryFields.join(\", \")"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Dashboard_getTop10AccountsOfAppViewers",
+              "name": "getTop10AccountsOfAppViewers",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "[\n  {\n    $match: {\n      viewMode: false,\n\t\t\tisSubscribed: true,\n\t\t\tstripeCustomerId: {\n\t\t\t\t$in: getSegmentSFAccounts.data.map(item => item.stripe_id_c)\n\t\t\t},\n\t\t\ttimestamp: {\n\t\t\t\t$gte: `ISODate(${moment().subtract(1, 'month').toISOString()})`\n\t\t\t},\n\t\t\t$expr: {\n        $eq: [{ $strLenCP: \"$instanceUserId\" }, 64]\n      }\n    }\n  },\n  {\n    $group: {\n      _id: {\n\t\t\t\tcustomerId: \"$stripeCustomerId\"\n\t\t\t},\n\t\t\tuniqueInstanceUsers: { \"$addToSet\": \"$instanceUserId\" },\n      count: { $sum: 1 }\n    }\n  },\n  {\n    \"$project\": {\n      \"_id\": 0,\n      \"customerId\": \"$_id.customerId\",\n      \"uniqueInstanceUserCount\": { \"$size\": \"$uniqueInstanceUsers\" },\n    }\n  },\n\t{\n\t\t$sort: {\n\t\t\tuniqueInstanceUserCount: -1\n\t\t}\n\t}\n]",
+                "[\n  {\n    $match: {\n      viewMode: true,\n\t\t\tisSubscribed: true,\n\t\t\tstripeCustomerId: {\n\t\t\t\t$in: getSegmentSFAccounts.data.map(item => item.stripe_id_c)\n\t\t\t},\n\t\t\ttimestamp: {\n\t\t\t\t$gte: `ISODate(${moment().subtract(1, 'month').toISOString()})`\n\t\t\t},\n\t\t\t$expr: {\n        $eq: [{ $strLenCP: \"$instanceUserId\" }, 64]\n      }\n    }\n  },\n  {\n    $group: {\n      _id: {\n\t\t\t\tcustomerId: \"$stripeCustomerId\"\n\t\t\t},\n\t\t\tuniqueInstanceUsers: { \"$addToSet\": \"$instanceUserId\" },\n      count: { $sum: 1 }\n    }\n  },\n  {\n    \"$project\": {\n      \"_id\": 0,\n      \"customerId\": \"$_id.customerId\",\n      \"uniqueInstanceUserCount\": { \"$size\": \"$uniqueInstanceUsers\" },\n    }\n  },\n\t{\n\t\t$sort: {\n\t\t\tuniqueInstanceUserCount: -1\n\t\t}\n\t}\n]"
+              ],
+              "timeoutInMillisecond": 20000
+            },
+            {
+              "id": "Dashboard_getTop10AccountsOfDevelopers",
+              "name": "getTop10AccountsOfDevelopers",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "[\n  {\n    $match: {\n      viewMode: false,\n\t\t\tisSubscribed: true,\n\t\t\tstripeCustomerId: {\n\t\t\t\t$in: getSegmentSFAccounts.data.map(item => item.stripe_id_c)\n\t\t\t},\n\t\t\ttimestamp: {\n\t\t\t\t$gte: `ISODate(${moment().subtract(1, 'month').toISOString()})`\n\t\t\t},\n\t\t\t$expr: {\n        $eq: [{ $strLenCP: \"$instanceUserId\" }, 64]\n      }\n    }\n  },\n  {\n    $group: {\n      _id: {\n\t\t\t\tcustomerId: \"$stripeCustomerId\"\n\t\t\t},\n\t\t\tuniqueInstanceUsers: { \"$addToSet\": \"$instanceUserId\" },\n      count: { $sum: 1 }\n    }\n  },\n  {\n    \"$project\": {\n      \"_id\": 0,\n      \"customerId\": \"$_id.customerId\",\n      \"uniqueInstanceUserCount\": { \"$size\": \"$uniqueInstanceUsers\" },\n    }\n  },\n\t{\n\t\t$sort: {\n\t\t\tuniqueInstanceUserCount: -1\n\t\t}\n\t}\n]"
+              ],
+              "timeoutInMillisecond": 20000
+            }
+          ],
+          [
+            {
+              "id": "Dashboard_SalesforceActions.onPageLoad",
+              "name": "SalesforceActions.onPageLoad",
+              "collectionId": "Dashboard_SalesforceActions",
+              "confirmBeforeExecute": false,
+              "pluginType": "JS",
+              "jsonPathKeys": [
+                "() => {\n  getSegmentSFAccounts.run(() => {\n    getSegmentSFProductDependancy.run(() => {\n      GithubActions.fetchProductDependnacies();\n    });\n    LicenseActions.fetchLicenses();\n  });\n}"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ]
+        ],
+        "layoutOnLoadActionErrors": [],
+        "validOnPageLoadActions": true,
+        "id": "Dashboard",
+        "deleted": false,
+        "policies": [],
+        "userPermissions": []
       }
     ],
-    "name": "Dashboard",
-    "slug": "dashboard"
-  }
+    "userPermissions": [],
+    "policies": []
+  },
+  "deleted": false,
+  "gitSyncId": "655b663c44c3196dff1b331d_65fabd6e5e12647ece51d868"
 }
